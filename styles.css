@@ -11,8 +11,13 @@ body {
     position: fixed;
     overflow-y: auto;
     width: 220px;
-    transition: width 0.3s;
+    box-shadow: 0 3rem 5rem rgba(132, 139, 200, 0.2);
+    transition: box-shadow 0.3s ease;
 }
+
+.sidebar:hover {
+    box-shadow: none;
+  }
 
 .sidebar-sticky {
     padding: 20px;
@@ -27,6 +32,11 @@ body {
 
 .nav-link:hover {
     background-color: #9ccbfa;
+}
+
+.nav-link.active {
+    background-color: #9ccbfa;
+    border-radius: 20px;
 }
 
 main {

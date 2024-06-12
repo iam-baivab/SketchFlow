@@ -5,15 +5,23 @@ let tool = 'brush';
 let brushSize = 5;
 let color = '#000000';
 let startX, startY;
-const shapes = []; 
+const shapes = [];
 
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
 
+document.addEventListener('DOMContentLoaded', () => {
+    setTool('brush');
+});
+
 function setTool(selectedTool) {
     tool = selectedTool;
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    document.querySelector(`.nav-link[onclick="setTool('${tool}')"]`).classList.add('active');
 }
 
 function setColor(selectedColor) {
