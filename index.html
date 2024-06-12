@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" onclick="setTool('rectangle')">Rectangle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="setTool('circle')">Circle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="setTool('brush')">Brush</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="setTool('erase')">Erase</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="clearCanvas()">Clear Canvas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="saveCanvas()">Save as Image</a>
+                        </li>
+                        <li class="nav-item">
+                            <input type="color" id="colorPicker" class="form-control" onchange="setColor(this.value)">
+                        </li>
+                        <li class="nav-item">
+                            <input type="number" id="brushSize" class="form-control" value="5" onchange="setBrushSize(this.value)">
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <canvas id="canvas" width="800" height="600"></canvas>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

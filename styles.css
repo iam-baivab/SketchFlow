@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+}
+
+canvas {
+    border: 1px solid #000;
+}
