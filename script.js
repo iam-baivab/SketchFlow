@@ -4,6 +4,8 @@ let drawing = false;
 let tool = 'brush';
 let brushSize = 5;
 let color = '#000000';
+let startX, startY;
+const shapes = []; 
 
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
@@ -24,8 +26,10 @@ function setBrushSize(size) {
 
 function startDrawing(e) {
     drawing = true;
+    startX = e.offsetX;
+    startY = e.offsetY;
     ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
+    ctx.moveTo(startX, startY);
 }
 
 function draw(e) {
@@ -42,16 +46,85 @@ function draw(e) {
         ctx.strokeStyle = '#ffffff';
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
+    } else if (tool === 'rectangle' || tool === 'circle') {
+        redrawShapes();
+
+        const endX = e.offsetX;
+        const endY = e.offsetY;
+
+        const width = endX - startX;
+        const height = endY - startY;
+
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2;
+
+        if (tool === 'rectangle') {
+            ctx.strokeRect(startX, startY, width, height);
+        } else if (tool === 'circle') {
+            const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
+            const centerX = startX + width / 2;
+            const centerY = startY + height / 2;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
     }
+}
+
+function redrawShapes() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    shapes.forEach(shape => {
+        ctx.strokeStyle = shape.color;
+        ctx.lineWidth = shape.lineWidth;
+        if (shape.type === 'rectangle') {
+            ctx.strokeRect(shape.startX, shape.startY, shape.width, shape.height);
+        } else if (shape.type === 'circle') {
+            ctx.beginPath();
+            ctx.arc(shape.centerX, shape.centerY, shape.radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+    });
 }
 
 function stopDrawing() {
     drawing = false;
+    if (tool === 'rectangle' || tool === 'circle') {
+        const endX = event.offsetX;
+        const endY = event.offsetY;
+
+        const width = endX - startX;
+        const height = endY - startY;
+
+        if (tool === 'rectangle') {
+            shapes.push({
+                type: 'rectangle',
+                color: '#000000',
+                lineWidth: 2,
+                startX: startX,
+                startY: startY,
+                width: width,
+                height: height,
+            });
+        } else if (tool === 'circle') {
+            const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
+            const centerX = startX + width / 2;
+            const centerY = startY + height / 2;
+            shapes.push({
+                type: 'circle',
+                color: '#000000',
+                lineWidth: 2,
+                centerX: centerX,
+                centerY: centerY,
+                radius: radius,
+            });
+        }
+    }
     ctx.beginPath();
 }
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    shapes.length = 0;
 }
 
 function saveCanvas() {
@@ -60,15 +133,3 @@ function saveCanvas() {
     link.href = canvas.toDataURL();
     link.click();
 }
-
-canvas.addEventListener('click', function(e) {
-    if (tool === 'rectangle') {
-        ctx.fillStyle = color;
-        ctx.fillRect(e.offsetX, e.offsetY, 100, 50);
-    } else if (tool === 'circle') {
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(e.offsetX, e.offsetY, 50, 0, Math.PI * 2);
-        ctx.fill();
-    }
-});
