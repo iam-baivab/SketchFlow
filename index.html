@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="preloader">
+        <h1>
+            <img src="assets/preload.png" alt="logo">
+            SketchFlow
+        </h1>
+    </div>
+
+    <div class="container-fluid" style="display: none;">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
@@ -39,6 +46,12 @@
                             <input type="range" id="brushSize" value="5" min="1" max="200" step="1" onchange="setBrushSize(this.value)">
                         </li>
                     </ul>
+                    <div class="github-link">
+                        <a class="nav-link" href="#" onclick="openGitHub()">
+                            <img src="assets/github.png" alt="">
+                            GitHub
+                        </a>
+                    </div>
                 </div>
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

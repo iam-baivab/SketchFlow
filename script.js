@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      document.querySelector(".preloader").classList.add("fade-out");
+    }, 1000);
+  
+    setTimeout(function () {
+      document.querySelector(".container-fluid").style.display = "inherit";
+      document.querySelector(".preloader").style.display = "none";
+    }, 1500);
+});
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let drawing = false;
@@ -140,4 +151,8 @@ function saveCanvas() {
     link.download = 'canvas_image.png';
     link.href = canvas.toDataURL();
     link.click();
+}
+
+function openGitHub() {
+    window.open('https://github.com/iam-baivab/SketchFlow', '_blank');
 }
