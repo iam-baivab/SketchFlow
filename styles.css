@@ -166,14 +166,69 @@ img {
       align-items: center;
       flex-direction: column;
     }
+
+    .hamburger-menu {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1001;
+    }
+
+    .hamburger-menu button {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: #343a40;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .mobile-sidebar ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .mobile-sidebar .nav-link {
+        color: #ffffff;
+    }
+
+    .mobile-sidebar .nav-link:hover {
+        color: #9ccbfa;
+    }
+
+    .mobile-sidebar .nav-link.active {
+        background-color: #9ccbfa;
+    }
+
+    .mobile-sidebar #closeBtn {
+        align-self: flex-end;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #ffffff;
+        cursor: pointer;
+    }
 }
-  
+
 @media (max-width: 480px) {
     .preloader h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 3rem;
     }
 }

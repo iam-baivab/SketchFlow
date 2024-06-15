@@ -54,10 +54,43 @@
                     </div>
                 </div>
             </nav>
+            <div class="hamburger-menu d-md-none">
+                <button id="hamburgerBtn">&#9776;</button>
+            </div>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <canvas id="canvas" width="800" height="600"></canvas>
             </main>
         </div>
+    </div>
+
+    <div class="mobile-sidebar d-md-none" id="mobileSidebar">
+        <button id="closeBtn">&times;</button>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="setTool('rectangle')">Rectangle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="setTool('circle')">Circle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="setTool('brush')">Brush</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="setTool('erase')">Erase</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="clearCanvas()">Clear Canvas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="saveCanvas()">Save as Image</a>
+            </li>
+            <li class="nav-item">
+                <input type="color" id="colorPickerMobile" class="form-control" onchange="setColor(this.value)">
+            </li>
+            <li class="nav-item">
+                <input type="range" id="brushSizeMobile" value="5" min="1" max="200" step="1" onchange="setBrushSize(this.value)">
+            </li>
+        </ul>
     </div>
     <script src="script.js"></script>
 </body>

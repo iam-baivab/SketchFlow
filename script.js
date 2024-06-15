@@ -7,6 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector(".container-fluid").style.display = "inherit";
       document.querySelector(".preloader").style.display = "none";
     }, 1500);
+  
+    document.getElementById('hamburgerBtn').addEventListener('click', function() {
+        document.getElementById('mobileSidebar').style.left = '0';
+    });
+
+    document.getElementById('closeBtn').addEventListener('click', function() {
+        document.getElementById('mobileSidebar').style.left = '-100%';
+    });
 });
 
 const canvas = document.getElementById('canvas');
