@@ -16,9 +16,9 @@ body {
     align-items: center;
     opacity: 1;
     transition: opacity 1s ease-out;
-  }
+}
   
-  .preloader h1 {
+.preloader h1 {
     font-size: 5rem;
     color: black;
     opacity: 1;
@@ -26,19 +26,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .preloader img {
+.preloader img {
     width: 150px;
     height: 150px;
     opacity: 1;
     transition: opacity 1s ease-out;
     margin-right: 10px;
-  }
+}
   
-  .fade-out {
+.fade-out {
     opacity: 0;
-  }
+}
 
 .sidebar {
     background-color: #343a40;
@@ -53,25 +53,25 @@ body {
 
 .sidebar:hover {
     box-shadow: none;
-  }
+}
 
 .sidebar-sticky {
     padding: 20px;
 }
 
 .nav-link {
-    color: #000000;
+    color: #ffffff;
     font-size: 1.1rem;
     margin-bottom: 10px;
-    transition: color 0.3s;
+    transition: color 0.3s, background-color 0.3s;
 }
 
 .nav-link:hover {
-    background-color: #9ccbfa;
+    background-color: #007bff;
 }
 
 .nav-link.active {
-    background-color: #9ccbfa;
+    background-color: #007bff;
     border-radius: 20px;
 }
 
@@ -116,7 +116,7 @@ canvas {
 }
 
 a.nav-link:hover {
-    color: #000000;
+    color: #ffffff;
     border-radius: 20px;
 }
 
@@ -157,20 +157,21 @@ img {
     }
 
     canvas {
+        top: 30px;
         width: 100%;
     }
 
     .preloader h1 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
     .hamburger-menu {
         position: fixed;
         top: 10px;
-        left: 10px;
+        right: 10px;
         z-index: 1001;
     }
 
@@ -206,11 +207,12 @@ img {
     }
 
     .mobile-sidebar .nav-link:hover {
-        color: #9ccbfa;
+        background-color: #007bff;
     }
 
     .mobile-sidebar .nav-link.active {
-        background-color: #9ccbfa;
+        background-color: #007bff;
+        border-radius: 20px;
     }
 
     .mobile-sidebar #closeBtn {

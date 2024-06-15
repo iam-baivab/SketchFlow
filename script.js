@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
-      document.querySelector(".preloader").classList.add("fade-out");
+        document.querySelector(".preloader").classList.add("fade-out");
     }, 1000);
   
     setTimeout(function () {
-      document.querySelector(".container-fluid").style.display = "inherit";
-      document.querySelector(".preloader").style.display = "none";
+        document.querySelector(".container-fluid").style.display = "inherit";
+        document.querySelector(".preloader").style.display = "none";
     }, 1500);
   
     document.getElementById('hamburgerBtn').addEventListener('click', function() {
+        document.getElementById('hamburgerBtn').style.display = 'none';
         document.getElementById('mobileSidebar').style.left = '0';
     });
 
     document.getElementById('closeBtn').addEventListener('click', function() {
         document.getElementById('mobileSidebar').style.left = '-100%';
+        setTimeout(function() {
+            document.getElementById('hamburgerBtn').style.display = 'block';
+        }, 300); // match this duration to the CSS transition duration
     });
 });
 
