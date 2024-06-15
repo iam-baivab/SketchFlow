@@ -111,60 +111,61 @@ function redrawShapes() {
             ctx.strokeRect(shape.startX, shape.startY, shape.width, shape.height);
         } else if (shape.type === 'circle') {
             ctx.beginPath();
+            ctx.arc
             ctx.arc(shape.centerX, shape.centerY, shape.radius, 0, Math.PI * 2);
             ctx.stroke();
         }
     });
-}
-
-function stopDrawing() {
-    drawing = false;
-    if (tool === 'rectangle' || tool === 'circle') {
-        const endX = event.offsetX;
-        const endY = event.offsetY;
-
-        const width = endX - startX;
-        const height = endY - startY;
-
-        if (tool === 'rectangle') {
-            shapes.push({
-                type: 'rectangle',
-                color: '#000000',
-                lineWidth: 2,
-                startX: startX,
-                startY: startY,
-                width: width,
-                height: height,
-            });
-        } else if (tool === 'circle') {
-            const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
-            const centerX = startX + width / 2;
-            const centerY = startY + height / 2;
-            shapes.push({
-                type: 'circle',
-                color: '#000000',
-                lineWidth: 2,
-                centerX: centerX,
-                centerY: centerY,
-                radius: radius,
-            });
+    
+    function stopDrawing() {
+        drawing = false;
+        if (tool === 'rectangle' || tool === 'circle') {
+            const endX = event.offsetX;
+            const endY = event.offsetY;
+    
+            const width = endX - startX;
+            const height = endY - startY;
+    
+            if (tool === 'rectangle') {
+                shapes.push({
+                    type: 'rectangle',
+                    color: '#000000',
+                    lineWidth: 2,
+                    startX: startX,
+                    startY: startY,
+                    width: width,
+                    height: height,
+                });
+            } else if (tool === 'circle') {
+                const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
+                const centerX = startX + width / 2;
+                const centerY = startY + height / 2;
+                shapes.push({
+                    type: 'circle',
+                    color: '#000000',
+                    lineWidth: 2,
+                    centerX: centerX,
+                    centerY: centerY,
+                    radius: radius,
+                });
+            }
         }
+        ctx.beginPath();
     }
-    ctx.beginPath();
-}
-
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    shapes.length = 0;
-}
-
-function saveCanvas() {
-    const link = document.createElement('a');
-    link.download = 'canvas_image.png';
-    link.href = canvas.toDataURL();
-    link.click();
-}
-
-function openGitHub() {
-    window.open('https://github.com/iam-baivab/SketchFlow', '_blank');
+    
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        shapes.length = 0;
+    }
+    
+    function saveCanvas() {
+        const link = document.createElement('a');
+        link.download = 'canvas_image.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    }
+    
+    function openGitHub() {
+        window.open('https://github.com/iam-baivab/SketchFlow', '_blank');
+    }
 }

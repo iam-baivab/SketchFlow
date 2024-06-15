@@ -157,8 +157,8 @@ img {
     }
 
     canvas {
-        top: 30px;
         width: 100%;
+        margin-top: 40px;
     }
 
     .preloader h1 {
@@ -180,6 +180,7 @@ img {
         border: none;
         font-size: 2rem;
         cursor: pointer;
+        color: #007bff;
     }
 
     .mobile-sidebar {
