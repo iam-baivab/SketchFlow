@@ -12,6 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('hamburgerBtn').addEventListener('click', toggleMobileSidebar);
     document.getElementById('closeBtn').addEventListener('click', toggleMobileSidebar);
+
+    document.addEventListener('keydown', function (event) {
+        if (event.ctrlKey && event.key === 'z') {
+            undo();
+            event.preventDefault();
+        } else if (event.ctrlKey && event.key === 'y') {
+            redo();
+            event.preventDefault();
+        }
+    });
 });
 
 const canvas = document.getElementById('canvas');
