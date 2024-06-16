@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('hamburgerBtn').addEventListener('click', toggleMobileSidebar);
     document.getElementById('closeBtn').addEventListener('click', toggleMobileSidebar);
-
+    document.getElementById('lineToolBtn').addEventListener('click', function () {
+        setTool('line');
+    });
     document.addEventListener('keydown', function (event) {
         if (event.ctrlKey && event.key === 'z') {
             undo();
@@ -92,6 +94,7 @@ function draw(e) {
             break;
         case 'rectangle':
         case 'circle':
+        case 'line':
             redrawShapes();
             drawShape(e);
             break;
@@ -105,17 +108,26 @@ function drawShape(e) {
     const height = endY - startY;
 
     ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = brushSize;
 
-    if (tool === 'rectangle') {
-        ctx.strokeRect(startX, startY, width, height);
-    } else if (tool === 'circle') {
-        const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
-        const centerX = startX + width / 2;
-        const centerY = startY + height / 2;
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-        ctx.stroke();
+    switch (tool) {
+        case 'rectangle':
+            ctx.strokeRect(startX, startY, width, height);
+            break;
+        case 'circle':
+            const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
+            const centerX = startX + width / 2;
+            const centerY = startY + height / 2;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.stroke();
+            break;
+        case 'line':
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+            break;
     }
 }
 
@@ -124,12 +136,21 @@ function redrawShapes() {
     shapes.forEach(shape => {
         ctx.strokeStyle = shape.color;
         ctx.lineWidth = shape.lineWidth;
-        if (shape.type === 'rectangle') {
-            ctx.strokeRect(shape.startX, shape.startY, shape.width, shape.height);
-        } else if (shape.type === 'circle') {
-            ctx.beginPath();
-            ctx.arc(shape.centerX, shape.centerY, shape.radius, 0, Math.PI * 2);
-            ctx.stroke();
+        switch (shape.type) {
+            case 'rectangle':
+                ctx.strokeRect(shape.startX, shape.startY, shape.width, shape.height);
+                break;
+            case 'circle':
+                ctx.beginPath();
+                ctx.arc(shape.centerX, shape.centerY, shape.radius, 0, Math.PI * 2);
+                ctx.stroke();
+                break;
+            case 'line':
+                ctx.beginPath();
+                ctx.moveTo(shape.startX, shape.startY);
+                ctx.lineTo(shape.endX, shape.endY);
+                ctx.stroke();
+                break;
         }
     });
 }
@@ -138,37 +159,54 @@ function stopDrawing() {
     if (!drawing) return;
     drawing = false;
 
-    if (tool === 'rectangle' || tool === 'circle') {
-        const endX = event.offsetX;
-        const endY = event.offsetY;
-        const width = endX - startX;
-        const height = endY - startY;
+    switch (tool) {
+        case 'rectangle':
+        case 'circle':
+        case 'line':
+            const endX = event.offsetX;
+            const endY = event.offsetY;
+            const width = endX - startX;
+            const height = endY - startY;
 
-        let shapeColor = color;
+            let shapeColor = color;
 
-        if (tool === 'rectangle') {
-            shapes.push({
-                type: 'rectangle',
-                color: shapeColor,
-                lineWidth: 2,
-                startX: startX,
-                startY: startY,
-                width: width,
-                height: height,
-            });
-        } else if (tool === 'circle') {
-            const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
-            const centerX = startX + width / 2;
-            const centerY = startY + height / 2;
-            shapes.push({
-                type: 'circle',
-                color: shapeColor,
-                lineWidth: 2,
-                centerX: centerX,
-                centerY: centerY,
-                radius: radius,
-            });
-        }
+            switch (tool) {
+                case 'rectangle':
+                    shapes.push({
+                        type: 'rectangle',
+                        color: shapeColor,
+                        lineWidth: brushSize,
+                        startX: startX,
+                        startY: startY,
+                        width: width,
+                        height: height,
+                    });
+                    break;
+                case 'circle':
+                    const radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2;
+                    const centerX = startX + width / 2;
+                    const centerY = startY + height / 2;
+                    shapes.push({
+                        type: 'circle',
+                        color: shapeColor,
+                        lineWidth: brushSize,
+                        centerX: centerX,
+                        centerY: centerY,
+                        radius: radius,
+                    });
+                    break;
+                case 'line':
+                    shapes.push({
+                        type: 'line',
+                        color: shapeColor,
+                        lineWidth: brushSize,
+                        startX: startX,
+                        startY: startY,
+                        endX: endX,
+                        endY: endY,
+                    });
+                    break;
+            }
     }
     ctx.beginPath();
 }
