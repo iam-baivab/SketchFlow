@@ -19,13 +19,22 @@ body {
 }
   
 .preloader h1 {
-    font-size: 5rem;
+    font-family: "Playwrite CO", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 6rem;
     color: black;
     opacity: 1;
     transition: opacity 1s ease-out;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.preloader h1 span {
+    padding: 10px;
+    margin-top: 50px;
+    font-weight: 500;
 }
   
 .preloader img {
