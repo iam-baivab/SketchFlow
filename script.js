@@ -104,7 +104,7 @@ function drawShape(e) {
     const width = endX - startX;
     const height = endY - startY;
 
-    ctx.strokeStyle = '#000000';
+    ctx.strokeStyle = color;
     ctx.lineWidth = 2;
 
     if (tool === 'rectangle') {
@@ -144,10 +144,12 @@ function stopDrawing() {
         const width = endX - startX;
         const height = endY - startY;
 
+        let shapeColor = color;
+
         if (tool === 'rectangle') {
             shapes.push({
                 type: 'rectangle',
-                color: '#000000',
+                color: shapeColor,
                 lineWidth: 2,
                 startX: startX,
                 startY: startY,
@@ -160,7 +162,7 @@ function stopDrawing() {
             const centerY = startY + height / 2;
             shapes.push({
                 type: 'circle',
-                color: '#000000',
+                color: shapeColor,
                 lineWidth: 2,
                 centerX: centerX,
                 centerY: centerY,
