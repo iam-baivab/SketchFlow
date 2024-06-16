@@ -111,6 +111,18 @@
             <li class="nav-item">
                 <input type="range" id="brushSizeMobile" value="5" min="1" max="200" step="1" onchange="setBrushSize(this.value)">
             </li>
+            <div style="display: flex;">
+                <a class="nav-link" href="#" onclick="undo()">
+                    <span class="material-symbols-outlined">
+                        undo
+                    </span>
+                </a>
+                <a class="nav-link" href="#" onclick="redo()">
+                    <span class="material-symbols-outlined">
+                        redo
+                    </span>
+                </a>
+            </div>       
         </ul>
         <div class="github-link">
             <a class="nav-link" href="#" onclick="openGitHub()">
