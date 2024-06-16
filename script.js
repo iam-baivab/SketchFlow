@@ -23,6 +23,7 @@ let color = '#000000';
 let startX, startY;
 const shapes = [];
 const drawingHistory = [];
+const redoHistory = [];
 
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
@@ -64,6 +65,7 @@ function startDrawing(e) {
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     saveState();
+    redoHistory.length = 0;
 }
 
 function draw(e) {
@@ -163,6 +165,7 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     shapes.length = 0;
     saveState();
+    redoHistory.length = 0;
 }
 
 function saveCanvas() {
@@ -183,13 +186,31 @@ function saveState() {
 
 function undo() {
     if (drawingHistory.length > 0) {
-        const previousState = drawingHistory.pop();
+        redoHistory.push(drawingHistory.pop());
+        if (drawingHistory.length > 0) {
+            const previousState = drawingHistory[drawingHistory.length - 1];
+            const img = new Image();
+            img.src = previousState;
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+            };
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        shapes.pop();
+    }
+}
+
+function redo() {
+    if (redoHistory.length > 0) {
+        const nextState = redoHistory.pop();
+        drawingHistory.push(nextState);
         const img = new Image();
-        img.src = previousState;
+        img.src = nextState;
         img.onload = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0);
         };
-        shapes.pop();
     }
 }
