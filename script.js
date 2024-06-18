@@ -220,9 +220,19 @@ function clearCanvas() {
 }
 
 function saveCanvas() {
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+
+    tempCtx.fillStyle = '#ffffff';
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+    tempCtx.drawImage(canvas, 0, 0);
+
+    const dataURL = tempCanvas.toDataURL('image/jpeg');
     const link = document.createElement('a');
-    link.download = 'canvas_image.png';
-    link.href = canvas.toDataURL();
+    link.download = 'canvas_image.jpg';
+    link.href = dataURL;
     link.click();
 }
 
