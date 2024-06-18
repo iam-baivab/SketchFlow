@@ -67,8 +67,10 @@ function setColor(selectedColor) {
     color = selectedColor;
 }
 
-function setBrushSize(size) {
-    brushSize = size;
+function setBrushSize(value) {
+    document.getElementById('brushSizeRange').value = value;
+    document.getElementById('brushSizeNumber').value = value;
+    brushSize = parseInt(value);
 }
 
 function startDrawing(e) {
