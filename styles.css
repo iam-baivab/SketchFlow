@@ -276,3 +276,7 @@ img {
         font-size: 3rem;
     }
 }
+
+.nav-link-wrapper{
+    display: flex;
+}
