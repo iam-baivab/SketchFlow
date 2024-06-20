@@ -26,16 +26,24 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" onclick="setTool('rectangle')">Rectangle</a>
+                            <div class="nav-link-wrapper">
+                                <a class="nav-link active" href="#" onclick="setTool('rectangle')">
+                                    <span class="material-symbols-outlined">rectangle</span>
+                                </a>
+                                <a class="nav-link" href="#" onclick="setTool('circle')">
+                                    <span class="material-symbols-outlined">radio_button_unchecked</span> 
+                                </a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="setTool('circle')">Circle</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="setTool('line')">Line</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="setTool('brush')">Brush</a>
+                            <div class="nav-link-wrapper">
+                                <a class="nav-link" href="#" onclick="setTool('brush')">
+                                    <span class="material-symbols-outlined">brush</span> 
+                                </a>
+                                <a class="nav-link" href="#" onclick="setTool('line')">
+                                    <span class="material-symbols-outlined">pen_size_2</span> 
+                                </a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="setTool('erase')">Erase</a>
