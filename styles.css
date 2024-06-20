@@ -53,6 +53,7 @@ body {
     background-color: #343a40;
     color: #fff;
     height: 100%;
+    overflow-y: auto;
     position: fixed;
     width: 200px;
     box-shadow: 0 3rem 5rem rgba(132, 139, 200, 0.2);
