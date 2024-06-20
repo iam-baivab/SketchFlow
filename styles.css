@@ -82,6 +82,17 @@ body {
     border-radius: 20px;
 }
 
+.nav-link-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.saveas {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 main {
     margin-left: 220px;
     padding: 20px;
@@ -274,14 +285,4 @@ img {
         flex-direction: column;
         font-size: 3rem;
     }
-}
-
-.nav-link-wrapper{
-    display: flex;
-}
-
-.saveas {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
