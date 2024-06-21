@@ -89,8 +89,10 @@ body {
 
 .saveas {
     display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
     align-items: center;
-    gap: 15px;
+    gap: 8px;
 }
 
 main {
