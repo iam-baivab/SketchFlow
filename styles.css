@@ -156,18 +156,25 @@ img {
     margin-right: 5px;
 }
 
-.github-link {
+.github {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-sticky {
+    position: relative;
+    height: 100%;
+}
+
+.sidebar-sticky ul li:last-child{
     position: absolute;
     bottom: 20px;
     width: 100%;
     text-align: center;
     display: flex;
     align-items: center;
-}
-
-.sidebar-sticky {
-    position: relative;
-    height: 100%;
 }
 
 @media (max-width: 768px) {
