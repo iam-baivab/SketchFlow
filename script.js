@@ -31,7 +31,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let drawing = false;
 let tool = 'brush';
-let brushSize = 5;
+let brushSize = 3;
 let color = '#000000';
 let startX, startY;
 const shapes = [];
