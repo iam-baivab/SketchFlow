@@ -61,7 +61,7 @@ function setTool(selectedTool) {
         link.classList.remove('active');
     });
     document.querySelector(`.nav-link[onclick="setTool('${tool}')"]`).classList.add('active');
-    if (tool === 'rectangle' || tool === 'circle') {
+    if (tool === 'rectangle' || tool === 'circle' || tool === 'line') {
         canvas.style.cursor = 'crosshair';
     } else {
         canvas.style.cursor = 'default';
