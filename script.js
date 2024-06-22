@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('closeBtn').addEventListener('click', toggleMobileSidebar);
     document.getElementById('lineToolBtn').addEventListener('click', function () {
         setTool('line');
-    });    
+    });
 });
 
 document.addEventListener('keydown', function (event) {
@@ -61,6 +61,11 @@ function setTool(selectedTool) {
         link.classList.remove('active');
     });
     document.querySelector(`.nav-link[onclick="setTool('${tool}')"]`).classList.add('active');
+    if (tool === 'rectangle' || tool === 'circle') {
+        canvas.style.cursor = 'crosshair';
+    } else {
+        canvas.style.cursor = 'default';
+    }
 }
 
 function setColor(selectedColor) {
