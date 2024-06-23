@@ -12,6 +12,7 @@ SketchFlow is a simple web application that allows users to create and draw shap
   - Brush 🖌️: Allows freehand drawing with adjustable brush size.
   - Rectangle ▭: Draws rectangles on the canvas.
   - Circle ⚪: Draws circles on the canvas.
+  - Line 📏: Draws straight lines.
   - Erase 🧼: Erases parts of the canvas.
 
 - **Adjustable Brush Size**: Users can adjust the brush size using a range input slider.
