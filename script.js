@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('hamburgerBtn').addEventListener('click', toggleMobileSidebar);
     document.getElementById('closeBtn').addEventListener('click', toggleMobileSidebar);
-    document.getElementById('lineToolBtn').addEventListener('click', function () {
-        setTool('line');
-    });
 });
 
 document.addEventListener('keydown', function (event) {
